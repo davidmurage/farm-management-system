@@ -1,0 +1,70 @@
+/* Orders Container */
+.orders-container {
+    padding: 20px;
+    margin: 50px auto;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.orders-container h2 {
+    color: #27ae60;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+/* Orders Table */
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.orders-table th {
+    background-color: #27ae60;
+    color: white;
+    font-weight: bold;
+}
+
+.orders-table td {
+    background-color: #f9f9f9;
+}
+
+/* Status Badge */
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.status.pending {
+    background-color: #f39c12;
+}
+
+.status.shipped {
+    background-color: #2980b9;
+}
+
+.status.delivered {
+    background-color: #2ecc71;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .orders-table th, .orders-table td {
+        font-size: 0.9em;
+    }
+
+    .orders-container {
+        width: 90%;
+    }
+}

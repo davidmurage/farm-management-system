@@ -1,0 +1,56 @@
+/* General form styling */
+.form-container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #27ae60; /* Agriculture theme green */
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Submit button */
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #1e8449;
+}
+
+/* Responsive Form */
+@media (max-width: 500px) {
+    .form-container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    button {
+        font-size: 0.9em;
+    }
+}

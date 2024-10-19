@@ -1,0 +1,156 @@
+/* General reset and styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    overflow: hidden; /* Prevents scrollbars due to animation */
+    position: relative;
+}
+
+/* Header styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px 20px;
+    color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo h2 {
+    color: #1e8449;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.header-buttons .btn-header {
+    background-color: #1e8449;
+    color: white;
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.header-buttons .btn-header:hover {
+    background-color: #1e8449;
+    color: white;
+}
+
+/* Main Home Section */
+.home {
+    text-align: center;
+    padding: 50px;
+    position: relative;
+    z-index: 2; /* Ensures that content is on top of animations */
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #2c3e50;
+}
+
+p {
+    color: #7f8c8d;
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.home-buttons .btn {
+    margin: 10px;
+    padding: 15px 25px;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.home-buttons .btn:hover {
+    background-color: #1e8449;
+}
+
+/* Shooting Stars Animation */
+.shooting-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 1; /* Below content but above background */
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 80px;
+    background-color: rgba(39, 174, 96, 0.7); /* Green color */
+    opacity: 0;
+    animation: shooting 4s ease-in-out infinite;
+}
+
+@keyframes shooting {
+    0% {
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    50% {
+        transform: translate(800px, -800px) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(1200px, -1200px) rotate(45deg);
+    }
+}
+
+/* Randomly position stars */
+.star:nth-child(1) {
+    top: 10%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.star:nth-child(2) {
+    top: 30%;
+    left: 40%;
+    animation-delay: 1s;
+}
+
+.star:nth-child(3) {
+    top: 50%;
+    left: 60%;
+    animation-delay: 1.5s;
+}
+
+.star:nth-child(4) {
+    top: 70%;
+    left: 80%;
+    animation-delay: 0.5s;
+}
+
+.star:nth-child(5) {
+    top: 15%;
+    left: 75%;
+    animation-delay: 2s;
+}
