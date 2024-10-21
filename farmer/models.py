@@ -1,5 +1,17 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
+
+
+class User(AbstractUser):
+    ROLE_CHOICES = (
+        ('farmer', 'Farmer'),
+        ('buyer', 'Buyer')
+    )
+    role = models.CharField(max_length=6, choices=ROLE_CHOICES)
+    
+    def  __str__(self):
+        return self.username
+    
 
 
 class Farmer(models.Model):

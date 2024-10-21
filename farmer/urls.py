@@ -2,8 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('register-farmer/', views.register_farmer, name="register-farmer"),
-    path('login-farmer/', views.login_farmer, name="login-farmer"),
+    path('register-user/', views.register_user, name="register-user"),
+    path('login-user/', views.login_user, name="login-user"),
     path('crops/', views.get_crops, name="get-crops"),
     path('add-crop/', views.add_crop, name="add-crop"),
     path('update-crop/<int:pk>/', views.update_crop, name="update-crop"),

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,6 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 STRIPE_PUBLIC_KEY = 'your_public_key'
 STRIPE_SECRET_KEY = 'your_secret_key'
+
+
+AUTH_USER_MODEL = 'authentication.User'

@@ -4,7 +4,7 @@ from rest_framework.decorators import api_view
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
 from .models import Farmer, Crop, Livestock, Product, Order
-from .serializers import FarmerSerializer, CropSerializer, LivestockSerializer, ProductSerializer, OrderSerializer
+from .serializers import RegisterSerializer, FarmerSerializer, CropSerializer, LivestockSerializer, ProductSerializer, OrderSerializer
 import requests
 from django.contrib.auth import authenticate
 from rest_framework.permissions import IsAuthenticated
@@ -15,35 +15,29 @@ from django.conf import settings
 
 #Farmer Registration
 @api_view(['POST'])
-def register_farmer(request):
-    data = request.data
-    user = User.objects.create_user(username=data['username'],password=data['password'])
-    farmer = Farmer.objects.create(
-        user=user,
-        name = data['name'],
-        contact_details = data['contact_details'],
-        farm_location = data['farm_location'],
-        farm_size = data['farm_size'],
-        farm_type = data['farm_type']
-    )
-    
-    refresh = RefreshToken.for_user(user)
-    return Response({
-        'refresh': str(refresh),
-        'access':str(refresh.access_token),
-        'farmer': FarmerSerializer(farmer).data
+def register_user(request):
+    serializer = RegisterSerializer(data=request.data)
+    if serializer.is_valid():
+        user = serializer.save()
+        refresh = RefreshToken.for_user(user)
+        return Response({
+          'refresh': str(refresh),
+          'access':str(refresh.access_token),
+          'user': serializer.data
     })
+    return Response(serializer.errors, status=400)
     
 #Farmer Login
 @api_view(['POST'])
-def login_farmer(request):
+def login_user(request):
     data = request.data
-    user = authenticate(username=data['username'], password=data['password'])
+    user = authenticate(email=data['email'], password=data['password'])
     if user is not None:
         refresh = RefreshToken.for_user(user)
         return Response({
-            refresh: str(refresh),
+            'refresh': str(refresh),
             'access':str(refresh.access_token),
+            'role': user.role
         })
         
     else:
