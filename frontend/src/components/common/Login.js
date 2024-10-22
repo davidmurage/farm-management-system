@@ -1,20 +1,32 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../../styles/Login.css';
+import axios from 'axios';
 
 const Login = () => {
-    const [credentials, setCredentials] = useState({ username: '', password: '' });
+    const [credentials, setCredentials] = useState({ email: '', password: '' });
     const navigate = useNavigate();
 
     const handleChange = (e) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         // Perform login logic here (e.g., send credentials to server)
-        alert('Login successful');
-        navigate('/farmer-dashboard');  // Example: navigate to the farmer dashboard after successful login
+        try{
+            const res = await axios.post('http://localhost:8000/authentication/login/', credentials);
+            const {role} = res.data
+            if(role === 'farmer'){
+            navigate('/farmer-dashboard'); // Example: navigate to the farmer dashboard after successful login
+            }else{
+                navigate('/buyer-dashboard'); 
+            }
+        }catch(error){
+            console.log(error);
+        }
+        
+       
     };
 
     return (
@@ -34,10 +46,10 @@ const Login = () => {
             <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <input 
-                    type="text" 
-                    name="username" 
-                    placeholder="Username" 
-                    value={credentials.username} 
+                    type="email" 
+                    name="email" 
+                    placeholder="Email" 
+                    value={credentials.email} 
                     onChange={handleChange} 
                     required 
                 />

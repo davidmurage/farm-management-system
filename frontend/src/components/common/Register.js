@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../../styles/Register.css';
+import axios from 'axios';
 
 const Register = () => {
     const [formData, setFormData] = useState({
         username: '',
+        email: '',
         password: '',
         role: 'farmer',  // Default to farmer
     });
@@ -14,10 +16,16 @@ const Register = () => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Perform registration logic here (e.g., send formData to server)
-        alert('Registration successful');
+        try{
+            const res = await axios.post('http://localhost:8000/authentication/register/', formData)
+            console.log(res.data);
+            navigate('/login');
+        }catch(error){
+            console.log(error);
+        }
         navigate('/login');  // Redirect to login after successful registration
     };
 
@@ -44,6 +52,14 @@ const Register = () => {
                     name="username" 
                     placeholder="Username" 
                     value={formData.username} 
+                    onChange={handleChange} 
+                    required 
+                />
+                <input 
+                    type="email" 
+                    name="email" 
+                    placeholder="Email" 
+                    value={formData.email} 
                     onChange={handleChange} 
                     required 
                 />
